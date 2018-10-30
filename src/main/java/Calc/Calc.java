@@ -8,12 +8,12 @@ public class Calc {
     private float an = 0;
     private float bn = 0;
 
-    public void setA(String a) {
+    public void setA(String a) throws NumberFormatException {
         an = Float.parseFloat(a);
         this.a = a;
     }
 
-    public void setB(String b) {
+    public void setB(String b) throws NumberFormatException {
         bn = Float.parseFloat(b);
         this.b = b;
     }
@@ -34,10 +34,15 @@ public class Calc {
                 System.out.printf("Произведение: %.4f", an * bn);
                 break;
             case "/":
-                System.out.printf("Частное: %.4f", an / bn);
-                break;
+                if (bn != 0) {
+                    System.out.printf("Частное: %.4f", an / bn);
+                    break;
+                } else {
+                    System.out.println("Деление на ноль. На ноль делить нельзя!");
+                    break;
+                }
             default:
-                System.out.println("Введена не корретная операция");
+                System.out.println("Введена не корретная операция!");
         }
     }
 }
