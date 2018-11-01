@@ -1,12 +1,14 @@
 package Calc;
 
 public class Calc {
+
+
     private String a;
     private String b;
     private String operator;
 
-    private float an = 0;
-    private float bn = 0;
+    private Float an = null;
+    private Float bn = null;
 
     public void setA(String a) throws NumberFormatException {
         an = Float.parseFloat(a);
@@ -18,31 +20,38 @@ public class Calc {
         this.b = b;
     }
 
+    public Float getAn() {
+        return an;
+    }
+
+    public Float getBn() {
+        return bn;
+    }
+
     public void setOperator(String operator) {
         this.operator = operator;
     }
 
-    public void calc() {
+    public float calc() throws Exception {
         switch (operator) {
             case "+":
-                System.out.printf("Сумма: %.4f", an + bn);
-                break;
+                return an + bn;
             case "-":
-                System.out.printf("Разность:  %.4f", an - bn);
-                break;
+                return an - bn;
             case "*":
-                System.out.printf("Произведение: %.4f", an * bn);
-                break;
+                return an * bn;
             case "/":
                 if (bn != 0) {
-                    System.out.printf("Частное: %.4f", an / bn);
-                    break;
+                    return an / bn;
                 } else {
-                    System.out.println("Деление на ноль. На ноль делить нельзя!");
-                    break;
+                    throw new Exception();
                 }
             default:
-                System.out.println("Введена не корретная операция!");
+                throw new Exception();
         }
     }
+
+    /*public static void Print(String text) {
+        System.out.println(text);
+    }*/
 }

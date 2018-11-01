@@ -1,5 +1,7 @@
 
 import Calc.Calc;
+
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class Main {
@@ -14,9 +16,17 @@ public class Main {
 
         calculation.setOperator(getValue("Введите операцию(+, -, *, /) и нажмите Enter:"));
 
+        try {
+            String str;
+            str = String.format("%.4f",calculation.calc());
+            System.out.print("Результат: " + str);
+            //System.out.printf("Результат: %.4f" + calculation.calc());
+            //System.out.printf(Float.valueOf(calculation.calc()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Деление на ноль!");
+        }
         scaner.close();
-
-        calculation.calc();
     }
 
     private static String getValue(String text) {
@@ -37,12 +47,12 @@ public class Main {
 
     public static void userQuestionsB(String string, Calc calc) {
         System.out.println(string);
-        String a = scaner.nextLine();
+        String b = scaner.nextLine();
         try {
-            calc.setB(a);
+            calc.setB(b);
         } catch (NumberFormatException e) {
             System.out.println("Введите корректное значение");
-            userQuestionsA(string, calc);
+            userQuestionsB(string, calc);
         }
     }
 }
