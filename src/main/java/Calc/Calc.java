@@ -32,7 +32,7 @@ public class Calc {
         this.operator = operator;
     }
 
-    public float calc() throws Exception {
+    public float calc() throws ArithmeticException, IllegalArgumentException {
         switch (operator) {
             case "+":
                 return an + bn;
@@ -44,10 +44,10 @@ public class Calc {
                 if (bn != 0) {
                     return an / bn;
                 } else {
-                    throw new Exception();
+                    throw new ArithmeticException();
                 }
             default:
-                throw new Exception();
+                throw new IllegalArgumentException();
         }
     }
 
